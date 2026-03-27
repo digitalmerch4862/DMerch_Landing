@@ -131,61 +131,78 @@ const BrowsingOverlay = ({ active }: { active: boolean }) => (
   </AnimatePresence>
 );
 
-const Navbar = ({ onNavigate }: { onNavigate: () => void }) => (
-  <nav className="fixed top-0 w-full z-50 bg-cyber-dark/80 backdrop-blur-md border-b border-cyber-blue/20">
-    <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-      <div className="text-cyber-blue font-bold text-xl tracking-tighter flex items-center gap-3">
-        <img 
-          src={BUSINESS.logo} 
-          alt="DigitalMerch Logo" 
-          className="w-10 h-10 object-contain neon-border p-1 bg-cyber-dark"
-          referrerPolicy="no-referrer"
-        />
-        <span className="hidden sm:inline">DIGITALMERCH</span>
+const Navbar = ({ onNavigate }: { onNavigate: () => void }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <nav className="fixed top-0 w-full z-50 bg-cyber-dark/80 backdrop-blur-md border-b border-cyber-blue/20">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="text-cyber-blue font-bold text-xl tracking-tighter flex items-center gap-3">
+          <div className="border border-cyber-blue p-1 bg-cyber-dark/50">
+            <img 
+              src={BUSINESS.logo} 
+              alt="DigitalMerch Logo" 
+              className="w-8 h-8 object-contain"
+            />
+          </div>
+          <span className="hidden sm:inline font-black tracking-widest text-sm">DIGITALMERCH</span>
+        </div>
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] items-center">
+          <a href="#services" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Solutions</a>
+          <a href="#about" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Why Us</a>
+          <a href="#contact" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Consultation</a>
+        </div>
+
+        {/* Actions */}
+        <div className="flex items-center gap-3 sm:gap-6">
+          <a 
+            href={BUSINESS.digitalStore} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-cyber-blue hover:text-white transition-colors"
+            title="Store"
+          >
+            <ShoppingBag size={20} />
+          </a>
+          <a 
+            href={`tel:${BUSINESS.phone}`}
+            className="bg-cyber-blue text-cyber-dark px-4 py-2 font-black text-[10px] tracking-widest hover:shadow-[0_0_20px_#00f2ff] transition-all whitespace-nowrap"
+          >
+            CALL NOW
+          </a>
+          
+          {/* Mobile Menu Toggle */}
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden text-cyber-blue p-1"
+          >
+            {isMenuOpen ? <Zap size={24} /> : <Smartphone size={24} />}
+          </button>
+        </div>
       </div>
-      <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest items-center">
-        <a href="#services" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Solutions</a>
-        <a href="#about" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Why Us</a>
-        <a href="#contact" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Consultation</a>
-        <motion.a 
-          href={BUSINESS.digitalStore} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.05 }}
-          animate={{ 
-            textShadow: ["0 0 0px #00f2ff", "0 0 10px #00f2ff", "0 0 0px #00f2ff"],
-            boxShadow: ["0 0 0px rgba(0,242,255,0)", "0 0 15px rgba(0,242,255,0.3)", "0 0 0px rgba(0,242,255,0)"]
-          }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex items-center gap-2 text-cyber-blue border border-cyber-blue/50 px-4 py-1.5 bg-cyber-blue/5 hover:bg-cyber-blue hover:text-cyber-dark transition-all rounded-sm font-black"
-        >
-          <ShoppingBag size={16} />
-          Store
-        </motion.a>
-      </div>
-      <div className="flex items-center gap-4">
-        <motion.a 
-          href={BUSINESS.digitalStore} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          animate={{ 
-            boxShadow: ["0 0 0px rgba(0,242,255,0)", "0 0 10px rgba(0,242,255,0.4)", "0 0 0px rgba(0,242,255,0)"]
-          }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="md:hidden text-cyber-blue border border-cyber-blue/30 p-2 bg-cyber-blue/5 rounded-sm"
-        >
-          <ShoppingBag size={18} />
-        </motion.a>
-        <a 
-          href={`tel:${BUSINESS.phone}`}
-          className="bg-cyber-blue text-cyber-dark px-4 py-2 text-xs font-bold uppercase tracking-tighter hover:bg-white transition-colors"
-        >
-          Call Now
-        </a>
-      </div>
-    </div>
-  </nav>
-);
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-cyber-dark border-b border-cyber-blue/20 overflow-hidden"
+          >
+            <div className="px-4 py-6 flex flex-col gap-4 text-xs font-black uppercase tracking-widest">
+              <a href="#services" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Solutions</a>
+              <a href="#about" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Why Us</a>
+              <a href="#contact" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Consultation</a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
 
 const Hero = () => (
   <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
@@ -507,31 +524,31 @@ const MobileShowcase = () => {
   const screens = [
     { 
       title: "Business Dashboard", 
-      img: "/0e515c47-0f17-4a55-b4e7-74ffad638eb5.jpeg",
+      img: "0e515c47-0f17-4a55-b4e7-74ffad638eb5.jpeg",
       label: "Dashboard",
       icon: <Zap size={14} />
     },
     { 
       title: "App Ecosystem", 
-      img: "/65fbf656-8bc0-4fcb-8da2-233318a242d8.jpeg",
+      img: "65fbf656-8bc0-4fcb-8da2-233318a242d8.jpeg",
       label: "Apps",
       icon: <Globe size={14} />
     },
     { 
       title: "Team Conversations", 
-      img: "/420de5c9-228e-47b1-a0f7-20e232328a05.jpeg",
+      img: "420de5c9-228e-47b1-a0f7-20e232328a05.jpeg",
       label: "Conversations",
       icon: <MessageSquare size={14} />
     },
     { 
       title: "CRM Management", 
-      img: "/4852128a-4a66-4b12-8a2d-9043ae92eabf.jpeg",
+      img: "4852128a-4a66-4b12-8a2d-9043ae92eabf.jpeg",
       label: "CRM",
       icon: <ShieldCheck size={14} />
     },
     { 
       title: "Business Calendar", 
-      img: "/c0112c31-34e4-418c-b526-b010ea14fc35.jpeg",
+      img: "c0112c31-34e4-418c-b526-b010ea14fc35.jpeg",
       label: "Calendar",
       icon: <Clock size={14} />
     }
@@ -546,26 +563,27 @@ const MobileShowcase = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="text-center lg:text-left"
           >
             <h2 className="text-xs font-bold text-cyber-blue uppercase tracking-[0.4em] mb-4">Mobile Access</h2>
-            <h3 className="text-4xl font-black tracking-tighter mb-6 uppercase">Monitor Your Business <br />From Anywhere</h3>
+            <h3 className="text-3xl sm:text-4xl font-black tracking-tighter mb-6 uppercase">Monitor Your Business <br />From Anywhere</h3>
             <p className="text-gray-400 mb-8 leading-relaxed">
               Stay connected to your business operations 24/7. Our mobile-ready systems allow you to monitor leads, manage conversations, track sales, and handle appointments directly from your smartphone.
             </p>
             
-            <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 sm:gap-4 mb-8">
               {screens.map((item, i) => (
                 <button 
                   key={i} 
                   onClick={() => setScreenIndex(i)}
-                  className={`flex items-center gap-3 p-3 border transition-all ${
+                  className={`flex items-center gap-2 sm:gap-3 p-2 sm:p-3 border transition-all ${
                     screenIndex === i 
                     ? 'border-cyber-blue bg-cyber-blue/10 text-cyber-blue' 
                     : 'border-white/10 bg-cyber-dark/30 text-gray-400 hover:border-white/30'
                   }`}
                 >
-                  <div className={`w-1.5 h-1.5 rounded-full ${screenIndex === i ? 'bg-cyber-blue shadow-[0_0_8px_#00f2ff]' : 'bg-gray-600'}`} />
-                  <span className="text-[10px] font-bold uppercase tracking-widest">{item.label}</span>
+                  <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${screenIndex === i ? 'bg-cyber-blue shadow-[0_0_8px_#00f2ff]' : 'bg-gray-600'}`} />
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest truncate">{item.label}</span>
                 </button>
               ))}
             </div>
@@ -588,7 +606,7 @@ const MobileShowcase = () => {
               <motion.div 
                 onClick={() => setScreenIndex((prev) => (prev + 1) % screens.length)}
                 whileTap={{ scale: 0.97 }}
-                className="relative w-[300px] h-[620px] border-[12px] border-cyber-gray rounded-[48px] bg-cyber-dark shadow-[0_0_80px_rgba(0,242,255,0.15)] overflow-hidden neon-border cursor-pointer group"
+                className="relative w-[280px] sm:w-[300px] h-[580px] sm:h-[620px] border-[10px] sm:border-[12px] border-cyber-gray rounded-[40px] sm:rounded-[48px] bg-cyber-dark shadow-[0_0_80px_rgba(0,242,255,0.15)] overflow-hidden neon-border cursor-pointer group"
               >
                 {/* Notch */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-7 bg-cyber-gray rounded-b-3xl z-30 flex items-center justify-center gap-4">
@@ -622,10 +640,9 @@ const MobileShowcase = () => {
                     {screens.map((screen, idx) => (
                       <div key={idx} className="min-w-full h-full relative">
                         <img 
-                          src={screen.img} 
+                          src={`/${screen.img}`} 
                           alt={screen.title} 
                           className="w-full h-full object-cover grayscale brightness-110 contrast-125" 
-                          referrerPolicy="no-referrer"
                         />
                         <div className="absolute inset-0 bg-gradient-to-b from-cyber-dark/40 via-transparent to-cyber-dark/80 pointer-events-none" />
                       </div>
