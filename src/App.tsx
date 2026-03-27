@@ -5,7 +5,7 @@ import { Phone, MessageSquare, MapPin, Mail, Clock, ShieldCheck, Zap, Globe, Che
 const BUSINESS = {
   name: "DigitalMerch",
   tagline: "Custom Business Systems & Web App Development",
-  logo: "https://digitalmerchs.store/android-chrome-512x512.png",
+  logo: "https://dmerchportal.digitalmerchs.store/android-chrome-512x512.png",
   city: "Cabuyao, Laguna",
   address: "Cabuyao, Laguna, Philippines",
   phone: "+63 900 000 0000",
@@ -14,6 +14,7 @@ const BUSINESS = {
   facebook: "https://www.facebook.com/digitalmerch4862/",
   youtube: "https://youtube.com/@digitalmerch-sy7yt?si=c8VCo5afd47Rf5Df",
   instagram: "https://www.instagram.com/digitalmerch4862/",
+  digitalStore: "https://dmerchportal.digitalmerchs.store/",
   mapsLink: "https://goo.gl/maps/example",
   hours: "Mon - Sat: 9:00 AM - 6:00 PM",
   description: "We help businesses build powerful digital systems tailored to their exact needs. With expertise in Go High Level, website deployment, and custom SaaS development, we create solutions that automate processes and support growth.",
@@ -110,12 +111,50 @@ const Hero = () => (
         </div>
         <h1 className="text-5xl md:text-7xl font-black leading-none mb-6 tracking-tighter">
           BUILDING THE <br />
-          <span className="text-cyber-blue neon-text">OPERATING SYSTEM</span> <br />
+          <motion.span 
+            animate={{ opacity: [1, 0.8, 1, 0.9, 1] }}
+            transition={{ duration: 4, repeat: Infinity, times: [0, 0.1, 0.2, 0.8, 1] }}
+            className="text-cyber-blue neon-text"
+          >
+            OPERATING SYSTEM
+          </motion.span> <br />
           FOR YOUR BUSINESS
         </h1>
         <p className="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
           {BUSINESS.description}
         </p>
+        <div className="mb-8">
+          <motion.a 
+            href={BUSINESS.digitalStore}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.02 }}
+            animate={{ 
+              boxShadow: ["0 0 0px rgba(0,242,255,0)", "0 0 20px rgba(0,242,255,0.4)", "0 0 0px rgba(0,242,255,0)"] 
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+            className="relative inline-flex items-center gap-3 px-8 py-4 bg-cyber-blue text-cyber-dark font-black uppercase tracking-widest hover:bg-white transition-all neon-border group overflow-hidden"
+          >
+            <span className="relative z-10 flex items-center gap-3">
+              Visit Our Digital Store
+              <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </span>
+            
+            {/* Scanning light effect */}
+            <motion.div 
+              animate={{ left: ["-100%", "200%"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 2 }}
+              className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 z-0"
+            />
+          </motion.a>
+          <p className="text-[10px] text-cyber-blue font-bold uppercase tracking-widest mt-2 opacity-70">
+            For more products you need
+          </p>
+        </div>
         <div className="flex gap-4 sm:gap-6">
           <a 
             href={BUSINESS.facebook} 
