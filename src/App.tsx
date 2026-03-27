@@ -506,34 +506,34 @@ const MobileShowcase = () => {
 
   const screens = [
     { 
-      title: "Inventory Management", 
+      title: "Business Dashboard", 
       img: "/0e515c47-0f17-4a55-b4e7-74ffad638eb5.jpeg",
-      label: "Inventory",
-      icon: <ShoppingBag size={14} />
-    },
-    { 
-      title: "Sales Analytics", 
-      img: "/65fbf656-8bc0-4fcb-8da2-233318a242d8.jpeg",
-      label: "Analytics",
+      label: "Dashboard",
       icon: <Zap size={14} />
     },
     { 
-      title: "CRM Dashboard", 
-      img: "/420de5c9-228e-47b1-a0f7-20e232328a05.jpeg",
-      label: "CRM",
-      icon: <MessageSquare size={14} />
-    },
-    { 
-      title: "Order Tracking", 
-      img: "/4852128a-4a66-4b12-8a2d-9043ae92eabf.jpeg",
-      label: "Orders",
+      title: "App Ecosystem", 
+      img: "/65fbf656-8bc0-4fcb-8da2-233318a242d8.jpeg",
+      label: "Apps",
       icon: <Globe size={14} />
     },
     { 
-      title: "System Settings", 
+      title: "Team Conversations", 
+      img: "/420de5c9-228e-47b1-a0f7-20e232328a05.jpeg",
+      label: "Conversations",
+      icon: <MessageSquare size={14} />
+    },
+    { 
+      title: "CRM Management", 
+      img: "/4852128a-4a66-4b12-8a2d-9043ae92eabf.jpeg",
+      label: "CRM",
+      icon: <ShieldCheck size={14} />
+    },
+    { 
+      title: "Business Calendar", 
       img: "/c0112c31-34e4-418c-b526-b010ea14fc35.jpeg",
-      label: "Settings",
-      icon: <Smartphone size={14} />
+      label: "Calendar",
+      icon: <Clock size={14} />
     }
   ];
 
