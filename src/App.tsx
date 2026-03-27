@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Phone, MessageSquare, MapPin, Mail, Clock, ShieldCheck, Zap, Globe, ChevronRight, Loader2, Facebook, Youtube, Instagram } from "lucide-react";
+import { Phone, MessageSquare, MapPin, Mail, Clock, ShieldCheck, Zap, Globe, ChevronRight, Loader2, Facebook, Youtube, Instagram, ShoppingBag } from "lucide-react";
 
 const BUSINESS = {
   name: "DigitalMerch",
@@ -78,17 +78,46 @@ const Navbar = ({ onNavigate }: { onNavigate: () => void }) => (
         />
         <span className="hidden sm:inline">DIGITALMERCH</span>
       </div>
-      <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
+      <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest items-center">
         <a href="#services" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Solutions</a>
         <a href="#about" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Why Us</a>
         <a href="#contact" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Consultation</a>
+        <motion.a 
+          href={BUSINESS.digitalStore} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.05 }}
+          animate={{ 
+            textShadow: ["0 0 0px #00f2ff", "0 0 10px #00f2ff", "0 0 0px #00f2ff"],
+            boxShadow: ["0 0 0px rgba(0,242,255,0)", "0 0 15px rgba(0,242,255,0.3)", "0 0 0px rgba(0,242,255,0)"]
+          }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex items-center gap-2 text-cyber-blue border border-cyber-blue/50 px-4 py-1.5 bg-cyber-blue/5 hover:bg-cyber-blue hover:text-cyber-dark transition-all rounded-sm font-black"
+        >
+          <ShoppingBag size={16} />
+          Store
+        </motion.a>
       </div>
-      <a 
-        href={`tel:${BUSINESS.phone}`}
-        className="bg-cyber-blue text-cyber-dark px-4 py-2 text-xs font-bold uppercase tracking-tighter hover:bg-white transition-colors"
-      >
-        Call Now
-      </a>
+      <div className="flex items-center gap-4">
+        <motion.a 
+          href={BUSINESS.digitalStore} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          animate={{ 
+            boxShadow: ["0 0 0px rgba(0,242,255,0)", "0 0 10px rgba(0,242,255,0.4)", "0 0 0px rgba(0,242,255,0)"]
+          }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="md:hidden text-cyber-blue border border-cyber-blue/30 p-2 bg-cyber-blue/5 rounded-sm"
+        >
+          <ShoppingBag size={18} />
+        </motion.a>
+        <a 
+          href={`tel:${BUSINESS.phone}`}
+          className="bg-cyber-blue text-cyber-dark px-4 py-2 text-xs font-bold uppercase tracking-tighter hover:bg-white transition-colors"
+        >
+          Call Now
+        </a>
+      </div>
     </div>
   </nav>
 );
