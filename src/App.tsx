@@ -247,6 +247,7 @@ const Hero = () => (
             className="relative inline-flex items-center gap-3 px-8 py-4 bg-cyber-blue text-cyber-dark font-black uppercase tracking-widest hover:bg-white transition-all neon-border group overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-3">
+              <ShoppingBag size={20} />
               Visit Our Digital Store
               <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </span>
@@ -719,6 +720,62 @@ const MobileShowcase = () => {
   );
 };
 
+const FloatingMenu = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const menuItems = [
+    { icon: <Phone size={20} />, label: "Call", href: `tel:${BUSINESS.phone}`, color: "bg-green-500" },
+    { icon: <ShoppingBag size={20} />, label: "Store", href: BUSINESS.digitalStore, color: "bg-cyber-blue" },
+    { icon: <Facebook size={20} />, label: "FB", href: BUSINESS.facebook, color: "bg-blue-600" },
+    { icon: <Mail size={20} />, label: "Email", href: `mailto:${BUSINESS.email}`, color: "bg-orange-500" },
+  ];
+
+  return (
+    <div className="md:hidden fixed bottom-24 right-5 z-[9999] flex flex-col items-end gap-3">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.8 }}
+            className="flex flex-col items-end gap-3 mb-2"
+          >
+            {menuItems.map((item, idx) => (
+              <motion.a
+                key={idx}
+                href={item.href}
+                target={item.label === "Call" || item.label === "Email" ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: idx * 0.05 }}
+                className={`flex items-center gap-3 group`}
+              >
+                <span className="bg-cyber-dark/80 backdrop-blur-md px-3 py-1 border border-white/10 text-[10px] font-black uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                  {item.label}
+                </span>
+                <div className={`w-12 h-12 ${item.color} text-white rounded-full flex items-center justify-center shadow-lg border-2 border-white/20`}>
+                  {item.icon}
+                </div>
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.button
+        onClick={() => setIsOpen(!isOpen)}
+        whileTap={{ scale: 0.9 }}
+        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,242,255,0.3)] border-2 border-cyber-blue/50 transition-all ${
+          isOpen ? 'bg-white text-cyber-dark rotate-45' : 'bg-cyber-blue text-cyber-dark'
+        }`}
+      >
+        <Zap size={28} className={isOpen ? 'rotate-45' : ''} />
+      </motion.button>
+    </div>
+  );
+};
+
 export default function App() {
   const [isBrowsing, setIsBrowsing] = useState(false);
 
@@ -742,6 +799,7 @@ export default function App() {
         <About />
         <Contact />
         <Footer />
+        <FloatingMenu />
       </div>
     </div>
   );
