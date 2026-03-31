@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Phone, MessageSquare, MapPin, Mail, Clock, ShieldCheck, Zap, Globe, ChevronRight, Loader2, Facebook, Youtube, Instagram, ShoppingBag, Smartphone } from "lucide-react";
+import { Phone, MessageSquare, MapPin, Mail, Clock, ShieldCheck, Zap, Globe, ChevronRight, Loader2, Facebook, Youtube, Instagram, ShoppingBag, Smartphone, UserPlus, Calendar, Bot, CheckCircle2, ArrowRight } from "lucide-react";
 
 const BUSINESS = {
   name: "DigitalMerch",
@@ -37,6 +37,89 @@ const BUSINESS = {
     "Scalable Systems for Business Growth",
     "Clean, Modern & User-Friendly Design",
     "Reliable Deployment & Ongoing Support"
+  ],
+  portfolio: [
+    { 
+      name: "VRRM", 
+      url: "https://vrrm.vercel.app/", 
+      img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop", 
+      desc: "Real Estate & Property Management System",
+      tags: ["Real Estate", "CRM", "Automation"]
+    },
+    { 
+      name: "Huge Bites", 
+      url: "https://huge-bites.vercel.app/", 
+      img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop", 
+      desc: "Food Ordering & Inventory Platform",
+      tags: ["E-commerce", "POS", "Inventory"]
+    },
+    { 
+      name: "Cakes by Jai", 
+      url: "https://cakes-by-jai.vercel.app/", 
+      img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop", 
+      desc: "Bakery Management & Booking System",
+      tags: ["Booking", "Portal", "Retail"]
+    },
+    { 
+      name: "Afterwork Coffee", 
+      url: "https://afterwork-coffee.vercel.app/", 
+      img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop", 
+      desc: "Cafe POS & Loyalty System",
+      tags: ["Loyalty", "Analytics", "Mobile"]
+    }
+  ],
+  ghlFeatures: [
+    { title: "CRM & Pipelines", icon: <ShieldCheck size={18} /> },
+    { title: "Sales Funnels", icon: <Zap size={18} /> },
+    { title: "Website Builder", icon: <Globe size={18} /> },
+    { title: "Email Marketing", icon: <Mail size={18} /> },
+    { title: "SMS Marketing", icon: <MessageSquare size={18} /> },
+    { title: "Workflows", icon: <Zap size={18} /> },
+    { title: "Appointments", icon: <Clock size={18} /> },
+    { title: "Memberships", icon: <ShieldCheck size={18} /> },
+    { title: "Reputation", icon: <ShieldCheck size={18} /> },
+    { title: "Analytics", icon: <Zap size={18} /> },
+    { title: "Mobile App", icon: <Smartphone size={18} /> },
+    { title: "Forms/Surveys", icon: <MessageSquare size={18} /> }
+  ],
+  faqs: [
+    {
+      question: "What is a 'Custom Business System'?",
+      answer: "Unlike a standard website, a custom business system is a tailored platform designed to handle your specific operations—like CRM, automated follow-ups, booking, and inventory—all in one place."
+    },
+    {
+      question: "How long does it take to build a system?",
+      answer: "A typical deployment takes between 2 to 4 weeks depending on the complexity of your workflows and the number of integrations required."
+    },
+    {
+      question: "Can I monitor my business on my phone?",
+      answer: "Yes! All our systems are mobile-responsive, and we provide a dedicated mobile app so you can manage leads, chats, and sales on the go."
+    },
+    {
+      question: "Do you offer ongoing support?",
+      answer: "Absolutely. We provide reliable deployment and ongoing technical support to ensure your system grows with your business."
+    },
+    {
+      question: "Can this replace my current tools?",
+      answer: "In most cases, yes. Our Go High Level powered systems can replace your CRM, email marketing tool, funnel builder, and booking software, saving you hundreds in monthly subscriptions."
+    }
+  ],
+  testimonials: [
+    { name: "John Smith", company: "TechFlow", quote: "DigitalMerch transformed our lead management. The automation is flawless." },
+    { name: "Maria Garcia", company: "Bloom & Grow", quote: "The custom booking system saved us 10 hours a week in admin work." },
+    { name: "David Chen", company: "Chen Logistics", quote: "Finally, a system that actually scales with us. Highly recommended." },
+    { name: "Sarah Johnson", company: "Spark Media", quote: "The CRM integration was seamless. Our sales team is more efficient than ever." },
+    { name: "Robert Wilson", company: "Wilson & Co", quote: "Professional, fast, and the support is top-notch. A game changer." },
+    { name: "Emily Brown", company: "Pure Wellness", quote: "The mobile app allows me to run my business from anywhere. Incredible." },
+    { name: "Michael Lee", company: "Lee Enterprises", quote: "The ROI on this system was immediate. We replaced 4 tools with one." },
+    { name: "Jessica Taylor", company: "Taylor Designs", quote: "Beautiful UI and even better functionality. My clients love the portal." },
+    { name: "Chris Anderson", company: "Peak Performance", quote: "The automated follow-ups have doubled our conversion rate." },
+    { name: "Amanda White", company: "White Star Real Estate", quote: "The real estate CRM they built is the best I've ever used." },
+    { name: "Kevin Miller", company: "Miller Tech", quote: "DigitalMerch understands business workflows perfectly." },
+    { name: "Laura Davis", company: "Davis Consulting", quote: "The analytics dashboard gives us insights we never had before." },
+    { name: "James Wilson", company: "Wilson's Auto", quote: "Our inventory tracking is now 100% accurate thanks to this system." },
+    { name: "Sophia Martinez", company: "Martinez Group", quote: "The funnel builder is powerful and easy to use." },
+    { name: "Daniel Thompson", company: "Thompson Solutions", quote: "Exceptional service and a truly custom product." }
   ]
 };
 
@@ -97,6 +180,26 @@ const TechBackground = () => (
           style={{ left: `${Math.random() * 100}%` }}
         />
       ))}
+      
+      {/* Code Stream Effect */}
+      <div className="absolute inset-0 flex justify-around opacity-5 pointer-events-none overflow-hidden">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={`stream-${i}`}
+            initial={{ y: -1000 }}
+            animate={{ y: 1000 }}
+            transition={{ 
+              duration: 20 + Math.random() * 30,
+              repeat: Infinity,
+              ease: "linear",
+              delay: Math.random() * 20
+            }}
+            className="text-[8px] font-mono whitespace-pre text-cyber-blue leading-none"
+          >
+            {`01010101\nSYSTEM_INIT\nAUTH_SUCCESS\nDATA_SYNC\nOS_LOADED\n01010101\n`.repeat(20)}
+          </motion.div>
+        ))}
+      </div>
     </div>
 
     {/* Vignette for depth */}
@@ -121,10 +224,28 @@ const BrowsingOverlay = ({ active }: { active: boolean }) => (
           className="absolute left-0 right-0 h-1 bg-cyber-blue shadow-[0_0_20px_#00f2ff] z-10"
         />
         <div className="relative z-20 flex flex-col items-center gap-4">
-          <div className="flex items-center gap-2 px-4 py-2 border border-cyber-blue bg-cyber-dark/80 text-cyber-blue text-xs font-black uppercase tracking-[0.3em] neon-border">
+          <motion.div 
+            animate={{ 
+              opacity: [1, 0.5, 1],
+              scale: [1, 1.02, 1]
+            }}
+            transition={{ duration: 0.5, repeat: Infinity }}
+            className="flex items-center gap-2 px-4 py-2 border border-cyber-blue bg-cyber-dark/80 text-cyber-blue text-xs font-black uppercase tracking-[0.3em] neon-border"
+          >
             <Loader2 className="animate-spin" size={16} />
-            Browsing System...
-          </div>
+            Initializing...
+          </motion.div>
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: 200 }}
+            className="h-[1px] bg-cyber-blue/30 overflow-hidden"
+          >
+            <motion.div 
+              animate={{ x: [-200, 200] }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              className="w-1/2 h-full bg-cyber-blue"
+            />
+          </motion.div>
         </div>
       </motion.div>
     )}
@@ -151,13 +272,16 @@ const Navbar = ({ onNavigate }: { onNavigate: () => void }) => {
         {/* Desktop Links */}
         <div className="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] items-center">
           <a href="#services" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Solutions</a>
+          <a href="#portfolio" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Portfolio</a>
           <a href="#about" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Why Us</a>
           <a href="#contact" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Consultation</a>
         </div>
 
         {/* Actions */}
         <div className="flex items-center gap-3 sm:gap-6">
-          <a 
+          <motion.a 
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.9 }}
             href={BUSINESS.digitalStore} 
             target="_blank" 
             rel="noopener noreferrer" 
@@ -165,13 +289,18 @@ const Navbar = ({ onNavigate }: { onNavigate: () => void }) => {
             title="Store"
           >
             <ShoppingBag size={20} />
-          </a>
-          <a 
+          </motion.a>
+          <motion.a 
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 0 20px rgba(0, 242, 255, 0.4)"
+            }}
+            whileTap={{ scale: 0.95 }}
             href={`tel:${BUSINESS.phone}`}
-            className="bg-cyber-blue text-cyber-dark px-4 py-2 font-black text-[10px] tracking-widest hover:shadow-[0_0_20px_#00f2ff] transition-all whitespace-nowrap"
+            className="bg-cyber-blue text-cyber-dark px-4 py-2 font-black text-[10px] tracking-widest transition-all whitespace-nowrap"
           >
             CALL NOW
-          </a>
+          </motion.a>
           
           {/* Mobile Menu Toggle */}
           <button 
@@ -194,6 +323,7 @@ const Navbar = ({ onNavigate }: { onNavigate: () => void }) => {
           >
             <div className="px-4 py-6 flex flex-col gap-4 text-xs font-black uppercase tracking-widest">
               <a href="#services" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Solutions</a>
+              <a href="#portfolio" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Portfolio</a>
               <a href="#about" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Why Us</a>
               <a href="#contact" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Consultation</a>
             </div>
@@ -204,123 +334,284 @@ const Navbar = ({ onNavigate }: { onNavigate: () => void }) => {
   );
 };
 
-const Hero = () => (
-  <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-      <motion.div 
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="inline-flex items-center gap-2 px-3 py-1 border border-cyber-blue/30 bg-cyber-blue/5 text-cyber-blue text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
-          <Zap size={12} className="text-cyber-blue" /> CUSTOM SYSTEM DEVELOPMENT
-        </div>
-        <h1 className="text-5xl md:text-7xl font-black leading-none mb-6 tracking-tighter">
-          BUILDING THE <br />
-          <motion.span 
-            animate={{ opacity: [1, 0.8, 1, 0.9, 1] }}
-            transition={{ duration: 4, repeat: Infinity, times: [0, 0.1, 0.2, 0.8, 1] }}
-            className="text-cyber-blue neon-text"
-          >
-            OPERATING SYSTEM
-          </motion.span> <br />
-          FOR YOUR BUSINESS
-        </h1>
-        <p className="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
-          {BUSINESS.description}
-        </p>
-        <div className="mb-8">
-          <motion.a 
-            href={BUSINESS.digitalStore}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.02 }}
-            animate={{ 
-              boxShadow: ["0 0 0px rgba(0,242,255,0)", "0 0 20px rgba(0,242,255,0.4)", "0 0 0px rgba(0,242,255,0)"] 
-            }}
-            transition={{ 
-              duration: 4, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            className="relative inline-flex items-center gap-3 px-8 py-4 bg-cyber-blue text-cyber-dark font-black uppercase tracking-widest hover:bg-white transition-all neon-border group overflow-hidden"
-          >
-            <span className="relative z-10 flex items-center gap-3">
+const Hero = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8 }
+    }
+  };
+
+  return (
+    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
+      {/* Hero Background Elements */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none overflow-hidden z-0">
+        <motion.div 
+          animate={{ 
+            rotate: [0, 360],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-cyber-blue/5 rounded-full"
+        />
+        <motion.div 
+          animate={{ 
+            rotate: [360, 0],
+            scale: [1.2, 1, 1.2]
+          }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-cyber-blue/10 rounded-full border-dashed"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="relative"
+        >
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 border border-cyber-blue/30 bg-cyber-blue/5 text-cyber-blue text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
+            <Zap size={12} className="text-cyber-blue animate-pulse" /> SYSTEM ARCHITECTURE & AUTOMATION
+          </motion.div>
+          
+          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-black leading-none mb-6 tracking-tighter">
+            THE <br />
+            <motion.span 
+              animate={{ opacity: [1, 0.8, 1, 0.9, 1] }}
+              transition={{ duration: 4, repeat: Infinity, times: [0, 0.1, 0.2, 0.8, 1] }}
+              className="text-cyber-blue neon-text inline-block"
+            >
+              OPERATING SYSTEM
+            </motion.span> <br />
+            FOR YOUR BUSINESS
+          </motion.h1>
+          
+          <motion.p variants={itemVariants} className="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
+            Stop struggling with generic tools. We build <span className="text-white font-bold">custom business systems</span> that automate your workflow, manage your clients, and scale your operations—all in one place.
+          </motion.p>
+          
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-10">
+            <motion.a 
+              href="#contact"
+              animate={{ 
+                boxShadow: [
+                  "0 0 0px rgba(0, 242, 255, 0)",
+                  "0 0 25px rgba(0, 242, 255, 0.6)",
+                  "0 0 0px rgba(0, 242, 255, 0)"
+                ]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyber-blue text-cyber-dark font-black uppercase tracking-widest hover:bg-white transition-all neon-border group overflow-hidden"
+            >
+              <span className="relative z-10 flex items-center gap-3">
+                <ShieldCheck size={20} />
+                Build My System
+                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+              <motion.div 
+                animate={{ left: ["-100%", "200%"] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 2 }}
+                className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 z-0"
+              />
+            </motion.a>
+
+            <motion.a 
+              href={BUSINESS.digitalStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.02, backgroundColor: "rgba(0, 242, 255, 0.1)" }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-cyber-blue/40 text-cyber-blue font-black uppercase tracking-widest transition-all"
+            >
               <ShoppingBag size={20} />
-              Visit Our Digital Store
-              <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </span>
-            
-            {/* Scanning light effect */}
-            <motion.div 
-              animate={{ left: ["-100%", "200%"] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 2 }}
-              className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 z-0"
+              Digital Store
+            </motion.a>
+          </motion.div>
+          
+          <motion.div variants={itemVariants} className="flex gap-4 sm:gap-6">
+            {[
+              { href: BUSINESS.facebook, icon: <Facebook size={20} />, title: "Facebook" },
+              { href: BUSINESS.youtube, icon: <Youtube size={20} />, title: "YouTube" },
+              { href: BUSINESS.instagram, icon: <Instagram size={20} />, title: "Instagram" },
+              { href: `mailto:${BUSINESS.email}`, icon: <Mail size={20} />, title: "Email Us" }
+            ].map((social, i) => (
+              <motion.a 
+                key={i}
+                href={social.href} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                whileHover={{ 
+                  scale: 1.1, 
+                  backgroundColor: "rgba(0, 242, 255, 1)",
+                  color: "#050505",
+                  boxShadow: "0 0 15px rgba(0, 242, 255, 0.5)"
+                }}
+                whileTap={{ scale: 0.9 }}
+                className="w-12 h-12 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue transition-all neon-border bg-cyber-dark/50"
+                title={social.title}
+              >
+                {social.icon}
+              </motion.a>
+            ))}
+          </motion.div>
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8, rotateY: 20 }}
+          whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="relative hidden lg:block perspective-1000"
+        >
+          <motion.div 
+            animate={{ 
+              y: [0, -15, 0],
+              rotateZ: [0, 1, 0]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="relative z-10 neon-border p-2 bg-cyber-dark"
+          >
+            <img 
+              src="https://acropolium.com/img/articles/benefits-of-saas/img01.jpg" 
+              alt="Custom Business Systems" 
+              className="w-full grayscale contrast-125 brightness-75 rounded-sm"
+              referrerPolicy="no-referrer"
             />
-          </motion.a>
-          <p className="text-[10px] text-cyber-blue font-bold uppercase tracking-widest mt-2 opacity-70">
-            For more products you need
-          </p>
-        </div>
-        <div className="flex gap-4 sm:gap-6">
-          <a 
-            href={BUSINESS.facebook} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-14 h-14 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue hover:bg-cyber-blue hover:text-cyber-dark transition-all neon-border bg-cyber-dark/50"
-            title="Facebook"
+            <div className="absolute -bottom-6 -right-6 bg-cyber-blue text-cyber-dark p-6 font-black italic text-4xl shadow-[10px_10px_0px_#000]">
+              SaaS
+            </div>
+          </motion.div>
+          
+          {/* Decorative Tech Elements */}
+          <div className="absolute -top-10 -left-10 w-full h-full border border-cyber-blue/20 -z-10" />
+          <div className="absolute top-0 right-0 w-32 h-32 border-t-2 border-r-2 border-cyber-blue/40 -z-10 translate-x-4 -translate-y-4" />
+          
+          {/* Floating Data Badge */}
+          <motion.div 
+            animate={{ x: [0, 10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -left-12 top-1/2 -translate-y-1/2 p-4 border border-cyber-blue/30 bg-cyber-dark/90 backdrop-blur-md z-20"
           >
-            <Facebook size={24} />
-          </a>
-          <a 
-            href={BUSINESS.youtube} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-14 h-14 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue hover:bg-cyber-blue hover:text-cyber-dark transition-all neon-border bg-cyber-dark/50"
-            title="YouTube"
+            <div className="flex flex-col gap-1">
+              <div className="text-[8px] font-black text-cyber-blue uppercase tracking-widest">System Status</div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <div className="text-xs font-bold font-mono">OPTIMIZED</div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const Portfolio = () => (
+  <section id="portfolio" className="py-24 relative overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="mb-16">
+        <h2 className="text-xs font-bold text-cyber-blue uppercase tracking-[0.4em] mb-4">Our Work</h2>
+        <h3 className="text-4xl font-black tracking-tighter">SAMPLE SYSTEMS</h3>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-12">
+        {BUSINESS.portfolio.map((item, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.1 }}
+            className="group relative"
           >
-            <Youtube size={24} />
-          </a>
-          <a 
-            href={BUSINESS.instagram} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-14 h-14 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue hover:bg-cyber-blue hover:text-cyber-dark transition-all neon-border bg-cyber-dark/50"
-            title="Instagram"
+            <div className="relative aspect-video overflow-hidden border border-white/10 neon-border bg-cyber-dark/50">
+              <img 
+                src={item.img} 
+                alt={item.name} 
+                className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-cyber-dark via-transparent to-transparent opacity-80" />
+              
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {item.tags.map((tag, i) => (
+                    <span key={i} className="px-2 py-1 bg-cyber-blue/10 border border-cyber-blue/30 text-cyber-blue text-[8px] font-black uppercase tracking-widest">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h4 className="text-2xl font-black mb-2 tracking-tight uppercase">{item.name}</h4>
+                <p className="text-gray-400 text-sm mb-6 max-w-md">{item.desc}</p>
+                
+                <motion.a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-cyber-blue text-cyber-dark font-black text-xs uppercase tracking-widest hover:bg-white transition-all"
+                >
+                  View Live System <ChevronRight size={16} />
+                </motion.a>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const GHLFeatures = () => (
+  <section className="py-24 relative bg-cyber-blue/5 border-y border-cyber-blue/10">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="text-center mb-16">
+        <h2 className="text-xs font-bold text-cyber-blue uppercase tracking-[0.4em] mb-4">System Capabilities</h2>
+        <h3 className="text-4xl font-black tracking-tighter uppercase">Powered by AI & Advanced Automation</h3>
+        <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+          We leverage the power of AI and advanced automation to build all-in-one systems that replace dozens of expensive subscriptions.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {BUSINESS.ghlFeatures.map((feature, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.05 }}
+            className="p-6 border border-white/5 bg-cyber-dark/40 backdrop-blur-sm flex items-center gap-4 hover:border-cyber-blue/30 transition-colors group"
           >
-            <Instagram size={24} />
-          </a>
-          <a 
-            href={`mailto:${BUSINESS.email}`}
-            className="w-14 h-14 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue hover:bg-cyber-blue hover:text-cyber-dark transition-all neon-border bg-cyber-dark/50"
-            title="Email Us"
-          >
-            <Mail size={24} />
-          </a>
-        </div>
-      </motion.div>
-      
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="relative hidden lg:block"
-      >
-        <div className="relative z-10 neon-border p-2 bg-cyber-dark">
-          <img 
-            src="https://acropolium.com/img/articles/benefits-of-saas/img01.jpg" 
-            alt="Custom Business Systems" 
-            className="w-full grayscale contrast-125 brightness-75"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute -bottom-6 -right-6 bg-cyber-blue text-cyber-dark p-6 font-black italic text-4xl">
-            SaaS
-          </div>
-        </div>
-        <div className="absolute -top-10 -left-10 w-full h-full border border-cyber-blue/20 -z-10" />
-      </motion.div>
+            <div className="text-cyber-blue group-hover:scale-110 transition-transform">
+              {feature.icon}
+            </div>
+            <span className="text-[10px] font-black uppercase tracking-widest">{feature.title}</span>
+          </motion.div>
+        ))}
+      </div>
     </div>
   </section>
 );
@@ -337,21 +628,69 @@ const Services = () => (
         {BUSINESS.mainServices.map((service, idx) => (
           <motion.div 
             key={idx}
-            whileHover={{ y: -10 }}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+              cardHover: { 
+                y: -10,
+                borderColor: "rgba(0, 242, 255, 0.5)",
+                backgroundColor: "rgba(0, 242, 255, 0.05)"
+              }
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.1 }}
+            whileHover="cardHover"
             onClick={() => {
               if (idx === 3) {
                 document.getElementById('mobile-app')?.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className={`p-8 border border-white/10 bg-cyber-dark/40 backdrop-blur-sm hover:border-cyber-blue/50 transition-all group relative overflow-hidden ${idx === 3 ? 'cursor-pointer' : ''}`}
+            className={`p-8 border border-white/10 bg-cyber-dark/40 backdrop-blur-sm transition-all group relative overflow-hidden ${idx === 3 ? 'cursor-pointer' : ''}`}
           >
             {/* Corner Accents */}
             <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-cyber-blue/30" />
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-cyber-blue/30" />
             
-            <div className="w-12 h-12 border border-cyber-blue/30 flex items-center justify-center mb-6 group-hover:bg-cyber-blue group-hover:text-cyber-dark transition-colors">
-              {idx === 0 ? <Zap size={24} /> : idx === 1 ? <Globe size={24} /> : idx === 2 ? <ShieldCheck size={24} /> : <Smartphone size={24} />}
-            </div>
+            <motion.div 
+              variants={{
+                cardHover: { 
+                  scale: 10.3,
+                  borderRadius: "50%",
+                  borderColor: "rgba(0, 242, 255, 1)",
+                  borderWidth: "2px",
+                  backgroundColor: "rgba(0, 242, 255, 1)",
+                  color: "#050505",
+                  boxShadow: "0 0 20px rgba(0, 242, 255, 0.6), 0 0 40px rgba(0, 242, 255, 0.2)",
+                  opacity: 1,
+                  filter: "brightness(1.2)",
+                  zIndex: 10,
+                  cursor: "pointer",
+                  outline: "2px solid rgba(0, 242, 255, 0.2)",
+                  outlineOffset: "4px",
+                  textShadow: "0 0 8px rgba(0, 0, 0, 0.3)"
+                }
+              }}
+              className="w-12 h-12 border border-cyber-blue/30 flex items-center justify-center mb-6 transition-colors"
+            >
+              <motion.div
+                variants={{
+                  cardHover: { 
+                    scale: [1, 1.15, 1],
+                    y: [0, -4, 0],
+                    rotate: [0, 5, -5, 0],
+                    transition: { 
+                      duration: 0.8, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }
+                }}
+              >
+                {idx === 0 ? <Zap size={24} /> : idx === 1 ? <Globe size={24} /> : idx === 2 ? <ShieldCheck size={24} /> : <Smartphone size={24} />}
+              </motion.div>
+            </motion.div>
             <h4 className="text-xl font-bold mb-4 tracking-tight">{service.title}</h4>
             <p className="text-gray-400 text-sm leading-relaxed">{service.desc}</p>
           </motion.div>
@@ -362,9 +701,22 @@ const Services = () => (
         <h4 className="text-xs font-bold text-cyber-blue uppercase tracking-[0.4em] mb-8 text-center">Systems We Can Build</h4>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {BUSINESS.solutions.map((sol, idx) => (
-            <div key={idx} className="p-4 border border-white/5 bg-cyber-dark/30 backdrop-blur-sm text-center text-[10px] font-bold uppercase tracking-widest hover:border-cyber-blue transition-colors">
+            <motion.div 
+              key={idx} 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05 }}
+              whileHover={{ 
+                scale: 1.05, 
+                borderColor: "#00f2ff",
+                color: "#00f2ff",
+                backgroundColor: "rgba(0, 242, 255, 0.05)"
+              }}
+              className="p-4 border border-white/5 bg-cyber-dark/30 backdrop-blur-sm text-center text-[10px] font-bold uppercase tracking-widest transition-colors cursor-default"
+            >
               {sol}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -383,14 +735,18 @@ const About = () => (
       className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center"
     >
       <div className="order-2 lg:order-1 relative">
-        <div className="aspect-square neon-border overflow-hidden max-w-md mx-auto lg:mx-0 bg-cyber-dark/60 backdrop-blur-sm">
+        <motion.div 
+          whileHover={{ scale: 1.02, rotate: -1 }}
+          className="aspect-square neon-border overflow-hidden max-w-md mx-auto lg:mx-0 bg-cyber-dark/60 backdrop-blur-sm group"
+        >
           <img 
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcNikF626Q80UkaQ-DPXYh3mTgieBE_KesCg&s" 
             alt="Systems" 
-            className="w-full h-full object-cover grayscale contrast-125 brightness-90 hover:grayscale-0 transition-all duration-700" 
+            className="w-full h-full object-cover grayscale contrast-125 brightness-90 group-hover:grayscale-0 group-hover:brightness-110 transition-all duration-700" 
             referrerPolicy="no-referrer" 
           />
-        </div>
+          <div className="absolute inset-0 bg-cyber-blue/0 group-hover:bg-cyber-blue/5 transition-colors pointer-events-none" />
+        </motion.div>
         <div className="absolute -top-4 -left-4 w-full h-full border border-cyber-blue/10 -z-10 hidden lg:block" />
       </div>
       <div className="order-1 lg:order-2">
@@ -411,6 +767,334 @@ const About = () => (
     </motion.div>
   </section>
 );
+
+const InteractiveDemo = () => {
+  const [activeTab, setActiveTab] = useState("pipeline");
+  const [pipelineStage, setPipelineStage] = useState(0);
+  const [bookingStep, setBookingStep] = useState(1);
+  const [chatMessages, setChatMessages] = useState([
+    { role: "system", text: "New Lead Detected: John Doe" }
+  ]);
+
+  const stages = ["New Lead", "Contacted", "Meeting Set", "Proposal Sent", "Closed Won"];
+
+  const handleNextStage = () => {
+    if (pipelineStage < stages.length - 1) {
+      setPipelineStage(prev => prev + 1);
+    } else {
+      setPipelineStage(0);
+    }
+  };
+
+  const handleChat = () => {
+    const newMsg = { role: "user", text: "I'm interested in your services." };
+    setChatMessages(prev => [...prev, newMsg]);
+    setTimeout(() => {
+      setChatMessages(prev => [...prev, { role: "bot", text: "Hi John! Thanks for reaching out. I've scheduled a follow-up for you tomorrow at 10 AM. Is that okay?" }]);
+    }, 1000);
+  };
+
+  return (
+    <section id="demo" className="py-24 relative overflow-hidden bg-cyber-dark/20">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-xs font-bold text-cyber-blue uppercase tracking-[0.4em] mb-4">Live Experience</h2>
+          <h3 className="text-4xl font-black tracking-tighter uppercase">System Simulator</h3>
+          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+            Experience how our custom systems automate your business workflows in real-time.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          {/* Sidebar Controls */}
+          <div className="lg:col-span-4 space-y-4">
+            {[
+              { id: "pipeline", label: "Lead Pipeline", icon: <UserPlus size={20} />, desc: "Automated lead tracking & movement." },
+              { id: "booking", label: "Smart Booking", icon: <Calendar size={20} />, desc: "Self-service appointment scheduling." },
+              { id: "automation", label: "Auto-Response", icon: <Bot size={20} />, desc: "Instant AI-powered lead engagement." }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`w-full p-6 text-left border transition-all duration-300 ${
+                  activeTab === tab.id 
+                    ? 'bg-cyber-blue/10 border-cyber-blue text-white' 
+                    : 'bg-cyber-dark/40 border-white/10 text-gray-400 hover:border-white/20'
+                }`}
+              >
+                <div className="flex items-center gap-4 mb-2">
+                  <div className={`${activeTab === tab.id ? 'text-cyber-blue' : 'text-gray-500'}`}>
+                    {tab.icon}
+                  </div>
+                  <span className="font-bold uppercase tracking-widest text-sm">{tab.label}</span>
+                </div>
+                <p className="text-xs opacity-60 leading-relaxed">{tab.desc}</p>
+              </button>
+            ))}
+          </div>
+
+          {/* Interactive Area */}
+          <div className="lg:col-span-8 bg-cyber-dark/60 border border-white/10 p-8 min-h-[400px] relative overflow-hidden">
+            <AnimatePresence mode="wait">
+              {activeTab === "pipeline" && (
+                <motion.div
+                  key="pipeline"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="h-full flex flex-col"
+                >
+                  <div className="flex justify-between items-center mb-8">
+                    <h4 className="text-sm font-bold uppercase tracking-widest text-cyber-blue">Sales Pipeline</h4>
+                    <button 
+                      onClick={handleNextStage}
+                      className="text-[10px] uppercase tracking-widest font-bold bg-cyber-blue text-black px-4 py-2 hover:bg-white transition-colors"
+                    >
+                      Advance Lead
+                    </button>
+                  </div>
+
+                  <div className="flex gap-4 overflow-x-auto pb-4">
+                    {stages.map((stage, idx) => (
+                      <div key={stage} className="min-w-[160px] flex-1">
+                        <div className={`text-[10px] font-bold uppercase tracking-widest mb-4 pb-2 border-b ${pipelineStage === idx ? 'text-cyber-blue border-cyber-blue' : 'text-gray-600 border-white/5'}`}>
+                          {stage}
+                        </div>
+                        {pipelineStage === idx && (
+                          <motion.div
+                            layoutId="lead-card"
+                            className="bg-white/5 border border-white/10 p-4"
+                          >
+                            <div className="w-8 h-8 rounded-full bg-cyber-blue/20 flex items-center justify-center text-cyber-blue mb-3">
+                              <UserPlus size={14} />
+                            </div>
+                            <div className="text-xs font-bold mb-1">John Doe</div>
+                            <div className="text-[10px] text-gray-500">Custom SaaS Project</div>
+                          </motion.div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {activeTab === "booking" && (
+                <motion.div
+                  key="booking"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="h-full"
+                >
+                  <div className="max-w-md mx-auto text-center">
+                    {bookingStep === 1 ? (
+                      <div>
+                        <h4 className="text-sm font-bold uppercase tracking-widest text-cyber-blue mb-8">Select a Date</h4>
+                        <div className="grid grid-cols-7 gap-2 mb-8">
+                          {Array.from({ length: 31 }).map((_, i) => (
+                            <button
+                              key={i}
+                              onClick={() => setBookingStep(2)}
+                              className="aspect-square flex items-center justify-center text-xs border border-white/5 hover:border-cyber-blue hover:text-cyber-blue transition-colors"
+                            >
+                              {i + 1}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ) : bookingStep === 2 ? (
+                      <div>
+                        <h4 className="text-sm font-bold uppercase tracking-widest text-cyber-blue mb-8">Select Time</h4>
+                        <div className="space-y-2">
+                          {["09:00 AM", "10:30 AM", "02:00 PM", "04:30 PM"].map((time) => (
+                            <button
+                              key={time}
+                              onClick={() => setBookingStep(3)}
+                              className="w-full p-4 border border-white/10 text-sm hover:border-cyber-blue transition-colors"
+                            >
+                              {time}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <motion.div 
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="py-12"
+                      >
+                        <div className="w-16 h-16 rounded-full bg-cyber-blue/20 flex items-center justify-center text-cyber-blue mx-auto mb-6">
+                          <CheckCircle2 size={32} />
+                        </div>
+                        <h5 className="text-xl font-bold uppercase tracking-tighter mb-2">Booking Confirmed!</h5>
+                        <p className="text-sm text-gray-400 mb-8">A confirmation email and SMS have been sent to your device.</p>
+                        <button 
+                          onClick={() => setBookingStep(1)}
+                          className="text-[10px] uppercase tracking-widest font-bold border border-cyber-blue text-cyber-blue px-6 py-3 hover:bg-cyber-blue hover:text-black transition-all"
+                        >
+                          Book Another
+                        </button>
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
+              {activeTab === "automation" && (
+                <motion.div
+                  key="automation"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="h-full flex flex-col"
+                >
+                  <div className="flex-1 space-y-4 mb-6 overflow-y-auto max-h-[300px] pr-2">
+                    {chatMessages.map((msg, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                      >
+                        <div className={`max-w-[80%] p-4 text-xs ${
+                          msg.role === 'system' ? 'bg-white/5 text-gray-500 italic' :
+                          msg.role === 'user' ? 'bg-cyber-blue text-black font-bold' :
+                          'bg-white/10 text-white'
+                        }`}>
+                          {msg.text}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                  <div className="flex gap-2">
+                    <button 
+                      onClick={handleChat}
+                      className="flex-1 bg-cyber-blue text-black font-bold uppercase tracking-widest text-[10px] py-4 hover:bg-white transition-colors flex items-center justify-center gap-2"
+                    >
+                      Simulate New Lead Inquiry <ArrowRight size={14} />
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Testimonials = () => {
+  // Duplicate testimonials for seamless loop
+  const scrollItems = [...BUSINESS.testimonials, ...BUSINESS.testimonials];
+
+  return (
+    <section className="py-24 relative overflow-hidden bg-cyber-dark/40 border-y border-white/5">
+      <div className="max-w-7xl mx-auto px-4 mb-16 text-center">
+        <h2 className="text-xs font-bold text-cyber-blue uppercase tracking-[0.4em] mb-4">Success Stories</h2>
+        <h3 className="text-4xl font-black tracking-tighter uppercase">Client Testimonials</h3>
+      </div>
+
+      <div className="relative flex overflow-hidden group">
+        <motion.div 
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ 
+            duration: 40, 
+            repeat: Infinity, 
+            ease: "linear" 
+          }}
+          className="flex gap-8 whitespace-nowrap"
+        >
+          {scrollItems.map((t, i) => (
+            <div 
+              key={i} 
+              className="w-[350px] p-8 bg-cyber-dark/60 border border-white/10 backdrop-blur-sm relative group/card"
+            >
+              <div className="absolute top-0 left-0 w-1 h-full bg-cyber-blue opacity-0 group-hover/card:opacity-100 transition-opacity" />
+              <div className="flex items-center gap-1 text-cyber-blue mb-4">
+                {[...Array(5)].map((_, i) => <Zap key={i} size={12} fill="currentColor" />)}
+              </div>
+              <p className="text-gray-300 text-sm italic leading-relaxed mb-6 whitespace-normal">
+                "{t.quote}"
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-cyber-blue/10 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue font-black text-xs">
+                  {t.name.charAt(0)}
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white uppercase tracking-widest">{t.name}</div>
+                  <div className="text-[10px] text-cyber-blue uppercase tracking-widest opacity-70">{t.company}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+      
+      {/* Gradient Overlays for Fade Effect */}
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-cyber-dark to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-cyber-dark to-transparent z-10 pointer-events-none" />
+    </section>
+  );
+};
+
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <section id="faq" className="py-24 relative overflow-hidden">
+      <div className="max-w-3xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-xs font-bold text-cyber-blue uppercase tracking-[0.4em] mb-4">Support Center</h2>
+          <h3 className="text-4xl font-black tracking-tighter uppercase">Frequently Asked Questions</h3>
+        </div>
+
+        <div className="space-y-4">
+          {BUSINESS.faqs.map((faq, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="border border-white/10 bg-cyber-dark/40 backdrop-blur-sm overflow-hidden"
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                className="w-full px-6 py-5 flex items-center justify-between text-left group"
+              >
+                <span className={`text-sm font-bold uppercase tracking-widest transition-colors ${openIndex === idx ? 'text-cyber-blue' : 'text-white group-hover:text-cyber-blue'}`}>
+                  {faq.question}
+                </span>
+                <motion.div
+                  animate={{ rotate: openIndex === idx ? 180 : 0 }}
+                  className="text-cyber-blue"
+                >
+                  <ChevronRight size={20} />
+                </motion.div>
+              </button>
+              
+              <AnimatePresence>
+                {openIndex === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <div className="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Contact = () => (
   <section id="contact" className="py-24 relative overflow-hidden">
@@ -453,7 +1137,13 @@ const Contact = () => (
           </div>
         </div>
         
-        <div className="bg-cyber-dark text-white p-10 neon-border min-h-[600px] relative">
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="bg-cyber-dark text-white p-10 neon-border min-h-[600px] relative"
+        >
           {/* Form Corner Accents */}
           <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-cyber-blue" />
           <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-cyber-blue" />
@@ -476,7 +1166,7 @@ const Contact = () => (
             title="DMerch Form"
           >
           </iframe>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   </section>
@@ -493,10 +1183,24 @@ const Footer = () => (
         Designed for the Digital Frontier.
       </div>
       <div className="flex gap-6">
-        <a href={BUSINESS.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyber-blue transition-colors"><Facebook size={20} /></a>
-        <a href={BUSINESS.youtube} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyber-blue transition-colors"><Youtube size={20} /></a>
-        <a href={BUSINESS.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyber-blue transition-colors"><Instagram size={20} /></a>
-        <a href={`mailto:${BUSINESS.email}`} className="text-gray-400 hover:text-cyber-blue transition-colors"><Mail size={20} /></a>
+        {[
+          { href: BUSINESS.facebook, icon: <Facebook size={20} /> },
+          { href: BUSINESS.youtube, icon: <Youtube size={20} /> },
+          { href: BUSINESS.instagram, icon: <Instagram size={20} /> },
+          { href: `mailto:${BUSINESS.email}`, icon: <Mail size={20} /> }
+        ].map((social, i) => (
+          <motion.a 
+            key={i}
+            href={social.href} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            whileHover={{ scale: 1.2, color: "#00f2ff" }}
+            whileTap={{ scale: 0.9 }}
+            className="text-gray-400 transition-colors"
+          >
+            {social.icon}
+          </motion.a>
+        ))}
       </div>
     </div>
   </footer>
@@ -794,9 +1498,14 @@ export default function App() {
         <BrowsingOverlay active={isBrowsing} />
         <Navbar onNavigate={handleNavigate} />
         <Hero />
+        <GHLFeatures />
         <Services />
+        <Portfolio />
+        <InteractiveDemo />
+        <Testimonials />
         <MobileShowcase />
         <About />
+        <FAQ />
         <Contact />
         <Footer />
         <FloatingMenu />
