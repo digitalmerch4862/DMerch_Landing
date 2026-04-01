@@ -124,8 +124,51 @@ const BUSINESS = {
   ]
 };
 
+const NebulaEffect = () => (
+  <motion.div
+    animate={{
+      opacity: [0.2, 0.5, 0.2],
+      scale: [1, 1.2, 1],
+    }}
+    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+    className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,242,255,0.15),transparent_60%)]"
+  />
+);
+
+const FloatingShapes = () => (
+  <div className="absolute inset-0 z-10 pointer-events-none" style={{ perspective: "1000px" }}>
+    {[...Array(6)].map((_, i) => (
+      <motion.div
+        key={i}
+        initial={{ 
+          x: Math.random() * 1000 - 500, 
+          y: Math.random() * 1000 - 500, 
+          rotate: 0,
+          opacity: 0.1
+        }}
+        animate={{
+          x: [Math.random() * 1000 - 500, Math.random() * 1000 - 500],
+          y: [Math.random() * 1000 - 500, Math.random() * 1000 - 500],
+          rotate: [0, 360],
+          opacity: [0.1, 0.3, 0.1]
+        }}
+        transition={{ duration: 25 + Math.random() * 20, repeat: Infinity, ease: "linear" }}
+        className="absolute w-16 h-16 border border-cyber-blue/30 bg-cyber-blue/10 backdrop-blur-sm"
+        style={{
+          borderRadius: i % 2 === 0 ? "0" : "50%",
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+        }}
+        whileHover={{ scale: 1.5, borderColor: "rgba(0, 242, 255, 0.8)" }}
+      />
+    ))}
+  </div>
+);
+
 const TechBackground = () => (
   <div className="fixed inset-0 z-0 overflow-hidden bg-cyber-dark">
+    <NebulaEffect />
+    <FloatingShapes />
     {/* 3D Image Layer with Parallax Effect */}
     <motion.div 
       initial={{ scale: 1.1 }}
@@ -754,7 +797,7 @@ const About = () => (
         <h2 className="text-xs font-bold text-cyber-blue uppercase tracking-[0.4em] mb-4">The Advantage</h2>
         <h3 className="text-4xl font-black tracking-tighter mb-8">WHY CHOOSE US?</h3>
         <p className="text-gray-400 mb-8 leading-relaxed">
-          Instead of using generic tools, we build systems specifically for your workflow, goals, and operations. Our online platforms allow you to manage everything in one place—accessible anytime, anywhere.
+          Stop settling for generic tools. We engineer custom systems focused on <strong>workflow automation</strong> to eliminate manual bottlenecks. By blending <strong>modern UI/UX design</strong> with robust architecture, we create platforms that scale with your business—accessible anytime, anywhere.
         </p>
         <div className="space-y-4">
           {BUSINESS.usp.map((point, idx) => (
@@ -1230,31 +1273,31 @@ const MobileShowcase = () => {
   const screens = [
     { 
       title: "Business Dashboard", 
-      img: "0e515c47-0f17-4a55-b4e7-74ffad638eb5.jpeg",
+      img: "https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/659128277_122132872040996816_756246881722454903_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=13d280&_nc_ohc=AO8177CHTwwQ7kNvwFsaTzD&_nc_oc=Adq4FwlOT308U0UIaXcYQwp1jPUKNchXp1I_Ieuv0wuwy4cu6qsXMQAlcgVBFbCEmys&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=iSxC7--25d5LeVJJXzVFPg&_nc_ss=7a3a8&oh=00_Af2THFdx_vQcOUW4TyNUwQVFz8O3RBaeHEyz5E0GPHAM0w&oe=69D315D9",
       label: "Dashboard",
       icon: <Zap size={14} />
     },
     { 
       title: "App Ecosystem", 
-      img: "65fbf656-8bc0-4fcb-8da2-233318a242d8.jpeg",
+      img: "https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/662062899_122132872016996816_8240632805308536593_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_ohc=bQLC84H1rB8Q7kNvwH8YRx5&_nc_oc=AdqtCEXzEKsuh_quW2MHnpPCHaffXhu0BKU6xGn76PSx6G8U5n4PxcO9Y3T68EL_w6g&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=AJbljQ_suwo2w4WAQwCaPQ&_nc_ss=7a3a8&oh=00_Af1DPwMHC52jf9Sv2Mu4fBDH6D1p5nst0Tt6V0QHIOYHhg&oe=69D33277",
       label: "Apps",
       icon: <Globe size={14} />
     },
     { 
       title: "Team Conversations", 
-      img: "420de5c9-228e-47b1-a0f7-20e232328a05.jpeg",
+      img: "https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/660796991_122132872022996816_7374268249581380841_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_ohc=bdaicus0dZwQ7kNvwFQ57Me&_nc_oc=AdqxvaHvEzpwUVvvLRxKNaEftoK4u7zehKPX3hWUqPnP0HzomSIgsfo6pYIHrmQzc2g&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=3sHwLyvsmrM3cE8hTe2rhg&_nc_ss=7a3a8&oh=00_Af0wCSzS6iMdDoUvSI43gko5Lg_VzwFl2N1MkNTGbhrEgw&oe=69D321F0",
       label: "Conversations",
       icon: <MessageSquare size={14} />
     },
     { 
       title: "CRM Management", 
-      img: "4852128a-4a66-4b12-8a2d-9043ae92eabf.jpeg",
+      img: "https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/659096002_122132872154996816_6216352381569376587_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=13d280&_nc_ohc=XcaVTdbKSEEQ7kNvwGUo_HJ&_nc_oc=AdrnDVTjs-uv6guzk6vsSr_JBpOhU8nadQAI-I_KJJS8N9EJ279fWZd4INOY8CG2RqM&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=x6tSJuFDMZDBLYOfImwjOw&_nc_ss=7a3a8&oh=00_Af0gZQ3VOQ9FIqh3iWmW_MqrZOAGXI8fFb9Uy2LE1_s95Q&oe=69D31395",
       label: "CRM",
       icon: <ShieldCheck size={14} />
     },
     { 
       title: "Business Calendar", 
-      img: "c0112c31-34e4-418c-b526-b010ea14fc35.jpeg",
+      img: "https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/660180376_122132872118996816_3157062155340545346_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_ohc=9pe7eeQM8IcQ7kNvwEItrzr&_nc_oc=AdoIKAYDzgquM_w-5aEsEZFNdk0lhDTSEkTqx4U_UE9R239fgRR7MHsJS3v1q7LXqOg&_nc_zt=23&_nc_ht=scontent-man2-1.xx&_nc_gid=5ooMunp5_tx-xtZNU6efuA&_nc_ss=7a3a8&oh=00_Af0OcgrmPhuj9_e9sXrsDp4B7GwO8NzRQ9If1XBnQCcjrA&oe=69D32132",
       label: "Calendar",
       icon: <Clock size={14} />
     }
@@ -1277,20 +1320,17 @@ const MobileShowcase = () => {
               Stay connected to your business operations 24/7. Our mobile-ready systems allow you to monitor leads, manage conversations, track sales, and handle appointments directly from your smartphone.
             </p>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 sm:gap-4 mb-8">
-              {screens.map((item, i) => (
+            <div className="flex justify-center gap-3 mb-8">
+              {screens.map((_, i) => (
                 <button 
                   key={i} 
                   onClick={() => setScreenIndex(i)}
-                  className={`flex items-center gap-2 sm:gap-3 p-2 sm:p-3 border transition-all ${
+                  className={`w-3 h-3 rounded-full transition-all ${
                     screenIndex === i 
-                    ? 'border-cyber-blue bg-cyber-blue/10 text-cyber-blue' 
-                    : 'border-white/10 bg-cyber-dark/30 text-gray-400 hover:border-white/30'
+                    ? 'bg-cyber-blue shadow-[0_0_8px_#00f2ff]' 
+                    : 'bg-white/20 hover:bg-white/40'
                   }`}
-                >
-                  <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${screenIndex === i ? 'bg-cyber-blue shadow-[0_0_8px_#00f2ff]' : 'bg-gray-600'}`} />
-                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest truncate">{item.label}</span>
-                </button>
+                />
               ))}
             </div>
 
@@ -1336,24 +1376,26 @@ const MobileShowcase = () => {
                   </div>
                 </div>
 
-                {/* Screen Content - Horizontal Scroll Animation */}
+                {/* Screen Content - Slide Animation */}
                 <div className="absolute inset-0 pt-10 pb-12 overflow-hidden">
-                  <motion.div 
-                    className="flex h-full"
-                    animate={{ x: `-${screenIndex * 100}%` }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  >
-                    {screens.map((screen, idx) => (
-                      <div key={idx} className="min-w-full h-full relative">
-                        <img 
-                          src={`/${screen.img}`} 
-                          alt={screen.title} 
-                          className="w-full h-full object-cover grayscale brightness-110 contrast-125" 
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-b from-cyber-dark/40 via-transparent to-cyber-dark/80 pointer-events-none" />
-                      </div>
-                    ))}
-                  </motion.div>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={screenIndex}
+                      initial={{ x: "100%" }}
+                      animate={{ x: 0 }}
+                      exit={{ x: "-100%" }}
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      className="absolute inset-0"
+                    >
+                      <img 
+                        src={screens[screenIndex].img} 
+                        alt={screens[screenIndex].title} 
+                        className="w-full h-full object-cover grayscale brightness-110 contrast-125" 
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-cyber-dark/40 via-transparent to-cyber-dark/80 pointer-events-none" />
+                    </motion.div>
+                  </AnimatePresence>
                   
                   {/* UI Overlay Elements (Static) */}
                   <div className="absolute bottom-16 left-6 right-6 p-4 border border-white/10 bg-cyber-dark/60 backdrop-blur-md rounded-xl z-20">
