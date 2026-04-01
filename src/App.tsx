@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Phone, MessageSquare, MapPin, Mail, Clock, ShieldCheck, Zap, Globe, ChevronRight, Loader2, Facebook, Youtube, Instagram, ShoppingBag, Smartphone, UserPlus, Calendar, Bot, CheckCircle2, ArrowRight } from "lucide-react";
+import ChatWidget from "./components/ChatWidget";
 
 const BUSINESS = {
   name: "DigitalMerch",
@@ -1509,6 +1510,7 @@ export default function App() {
         <Contact />
         <Footer />
         <FloatingMenu />
+        <ChatWidget />
       </div>
     </div>
   );
