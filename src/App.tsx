@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Phone, MessageSquare, MapPin, Mail, Clock, ShieldCheck, Zap, Globe, ChevronRight, Loader2, Facebook, Youtube, Instagram, ShoppingBag, Smartphone, UserPlus, Calendar, Bot, CheckCircle2, ArrowRight, Play, Pause } from "lucide-react";
-import ChatWidget from "./components/ChatWidget";
 
 const BUSINESS = {
   name: "DigitalMerch",
@@ -315,14 +314,24 @@ const Navbar = ({ onNavigate }: { onNavigate: () => void }) => {
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] items-center">
+          <a href="/" className="hover:text-cyber-blue transition-colors">Home</a>
           <a href="#services" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Solutions</a>
-          <a href="#portfolio" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Portfolio</a>
-          <a href="#about" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Why Us</a>
-          <a href="#contact" onClick={onNavigate} className="hover:text-cyber-blue transition-colors">Consultation</a>
+          <a href={BUSINESS.digitalStore} target="_blank" rel="noopener noreferrer" className="hover:text-cyber-blue transition-colors">Store</a>
+          <a href="/hammer-app" className="hover:text-cyber-blue transition-colors">Hammer App</a>
         </div>
 
         {/* Actions */}
         <div className="flex items-center gap-3 sm:gap-6">
+          <button 
+            onClick={() => {
+              const root = document.documentElement;
+              root.classList.toggle('bg-white');
+              localStorage.setItem('theme', root.classList.contains('bg-white') ? 'light' : 'dark');
+            }}
+            className="text-cyber-blue p-2"
+          >
+            Switch Theme
+          </button>
           <motion.a 
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
@@ -366,10 +375,10 @@ const Navbar = ({ onNavigate }: { onNavigate: () => void }) => {
             className="md:hidden bg-cyber-dark border-b border-cyber-blue/20 overflow-hidden"
           >
             <div className="px-4 py-6 flex flex-col gap-4 text-xs font-black uppercase tracking-widest">
+              <a href="/" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Home</a>
               <a href="#services" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Solutions</a>
-              <a href="#portfolio" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Portfolio</a>
-              <a href="#about" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Why Us</a>
-              <a href="#contact" onClick={() => { onNavigate(); setIsMenuOpen(false); }} className="py-2 border-b border-white/5">Consultation</a>
+              <a href={BUSINESS.digitalStore} onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Store</a>
+              <a href="/hammer-app" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Hammer App</a>
             </div>
           </motion.div>
         )}
@@ -589,16 +598,24 @@ const Portfolio = () => (
             transition={{ delay: idx * 0.1 }}
             className="group relative"
           >
-            <div className="relative aspect-video overflow-hidden border border-white/10 neon-border bg-cyber-dark/50">
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="relative aspect-video overflow-hidden border border-white/10 neon-border bg-cyber-dark/50"
+            >
               <img 
                 src={item.img} 
                 alt={item.name} 
-                className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
+                className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-700 ease-out" 
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-cyber-dark via-transparent to-transparent opacity-80" />
               
-              <div className="absolute bottom-0 left-0 right-0 p-8">
+              <motion.div 
+                 initial={{ opacity: 0 }}
+                 whileHover={{ opacity: 1 }}
+                 className="absolute inset-0 bg-cyber-dark/80 backdrop-blur-sm pointer-events-none" 
+              />
+              
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {item.tags.map((tag, i) => (
                     <span key={i} className="px-2 py-1 bg-cyber-blue/10 border border-cyber-blue/30 text-cyber-blue text-[8px] font-black uppercase tracking-widest">
@@ -607,7 +624,7 @@ const Portfolio = () => (
                   ))}
                 </div>
                 <h4 className="text-2xl font-black mb-2 tracking-tight uppercase">{item.name}</h4>
-                <p className="text-gray-400 text-sm mb-6 max-w-md">{item.desc}</p>
+                <p className="text-gray-400 text-sm mb-6 max-w-md group-hover:opacity-100 opacity-0 transition-opacity duration-500">{item.desc}</p>
                 
                 <motion.a
                   href={item.url}
@@ -615,12 +632,12 @@ const Portfolio = () => (
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-cyber-blue text-cyber-dark font-black text-xs uppercase tracking-widest hover:bg-white transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-cyber-blue text-cyber-dark font-black text-xs uppercase tracking-widest hover:bg-white transition-all w-fit"
                 >
                   View Live System <ChevronRight size={16} />
                 </motion.a>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         ))}
       </div>
@@ -1486,8 +1503,27 @@ const MobileShowcase = () => {
 
 
 
-export default function App() {
+import { useState, useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "motion/react";
+// ... (imports remain)
+import HammerApp from "./pages/HammerApp";
+
+// ... (other components)
+
+// ... (Keep existing imports)
+
+// ... (Keep existing component definitions)
+
+const HomePage = () => {
   const [isBrowsing, setIsBrowsing] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.documentElement.classList.add('bg-white');
+    }
+  }, []);
 
   const handleNavigate = () => {
     setIsBrowsing(true);
@@ -1496,10 +1532,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative text-white selection:bg-cyber-blue selection:text-cyber-dark">
-      {/* Background Layer */}
       <TechBackground />
-      
-      {/* Content Layer */}
       <div className="relative z-10">
         <BrowsingOverlay active={isBrowsing} />
         <Navbar onNavigate={handleNavigate} />
@@ -1514,8 +1547,18 @@ export default function App() {
         <FAQ />
         <Contact />
         <Footer />
-        <ChatWidget />
+
       </div>
     </div>
+  );
+};
+
+export default function App() {
+  const navigate = useNavigate();
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/hammer-app" element={<HammerApp onBack={() => navigate('/')} />} />
+    </Routes>
   );
 }
